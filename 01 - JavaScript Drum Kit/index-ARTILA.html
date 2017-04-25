@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS Drum Kit</title>
+		<link rel="stylesheet" type="text/css" href="style-ARTILA.css"/>
+	</head>
+	<body>
+		<!-- 键盘 -->
+		<div class="keys">
+			<div class="key" data-key="65">
+				<kbd>A</kbd>
+				<span class="sound">clap</span>
+			</div>
+			<div class="key" data-key="83">
+				<kbd>S</kbd>
+				<span class="sound">hihat</span>
+			</div>
+			<div class="key" data-key="68">
+				<kbd>D</kbd>
+				<span class="sound">kick</span>
+			</div>
+			<div class="key" data-key="70">
+				<kbd>F</kbd>
+				<span class="sound">openhat</span>
+			</div>
+			<div class="key" data-key="71">
+				<kbd>G</kbd>
+				<span class="sound">boom</span>
+			</div>
+			<div class="key" data-key="72">
+				<kbd>H</kbd>
+				<span class="sound">ride</span>
+			</div>
+			<div class="key" data-key="74">
+				<kbd>J</kbd>
+				<span class="sound">snare</span>
+			</div>
+			<div class="key" data-key="75">
+				<kbd>K</kbd>
+				<span class="sound">tom</span>				
+			</div>
+			<div class="key" data-key="76">
+				<kbd>L</kbd>
+				<span class="sound">tink</span>
+			</div>
+		</div>
+	
+		<!-- <audio> 标签定义声音，比如音乐或其他音频流，是 HTML 5 的新标签。 -->
+		<audio data-key="65" src="sounds/clap.wav"></audio>
+		<audio data-key="83" src="sounds/hihat.wav"></audio>
+		<audio data-key="68" src="sounds/kick.wav"></audio>
+		<audio data-key="70" src="sounds/openhat.wav"></audio>
+		<audio data-key="71" src="sounds/boom.wav"></audio>
+		<audio data-key="72" src="sounds/ride.wav"></audio>
+		<audio data-key="74" src="sounds/snare.wav"></audio>
+		<audio data-key="75" src="sounds/tom.wav"></audio>
+		<audio data-key="76" src="sounds/tink.wav"></audio>
+		
+		<script>
+			function playSound(e) {
+//			var audio = document.querySelector('audio[data-key="' + e.keyCode + '"]');
+//			var key = document.querySelector('.key[data-key="' + e.keyCode + '"]');	
+//      ES6的写法
+				const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+				const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+				// 没有对应的音频，输入的即不是想要的字母，停止函数
+				if (!audio) return;
+				// currentTime 属性设置或返回音频/视频播放的当前位置（以秒计）。当设置该属性时，播放会跳跃到指定的位置。
+				audio.currentTime = 0;
+				// play() 方法开始播放当前的音频或视频。--audio|video.play()
+				audio.play();
+				// classList 属性返回元素的类名，作为 DOMTokenList 对象。该属性用于在元素中添加，移除及切换 CSS 类。
+				key.classList.add('playing');
+			}
+			
+			function removeTransition(e) {
+				if (e.propertyName !== 'transform') return;
+				this.classList.remove('playing');
+			}
+			
+			// Document.querySelectorAll 返回与指定的选择器组匹配的文档中的元素列表 。返回的对象是 NodeList。
+			// Array.from()方法从一个类似数组或可迭代对象创建一个新的数组实例。
+			const keys = Array.from(document.querySelectorAll('.key'));
+			keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+//			var keys = Array.from(document.querySelectorAll('.key'));
+//			keys.forEach(function (key) {
+//			  return key.addEventListener('transitionend', removeTransition);
+//			});
+			// EventTarget.addEventListener() 方法将指定的监听器注册到 EventTarget 上，当该对象触发指定的事件时，指定的回调函数就会被执行。 事件目标可以是一个文档上的元素本身，或者任何其他支持事件的对象 (比如 XMLHttpRequest)。
+			window.addEventListener('keydown', playSound);
+		</script>
+	</body>
+</html>
