@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			/* 表盘  */
+			#clock {
+				position: relative;
+				margin: 100px auto;
+				width: 300px;
+				height: 300px;
+				border: 1px solid #000;
+				border-radius: 50%;
+				background: #fff;
+				box-shadow: 1px 1px 5px #000;
+			}
+			/* 表心  */
+			#clock .cap {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				/* 高度 / 2，宽度 / 2 */
+				margin: -10px 0 0 -10px;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background: #999;
+			}
+			#clock div {
+				transform-origin:center bottom;			
+			}
+			.hand {
+				position: absolute;
+				top: 50%;
+				left: 50%;		
+			}
+			/* 时针  */
+			.hour {
+				margin: -80px 0 0 -7px;
+				width: 14px;
+				height: 80px;
+				background: #000;
+				border-radius: 50% 50% 0 0;
+			}
+			/* 分针  */
+			.min {
+				margin: -100px 0 0 -5px;
+				width: 10px;
+				height: 100px;
+				background: #282828;
+				border-radius: 50% 50% 0 0;
+			}
+			/* 秒针  */
+			.sec {
+				margin: -120px 0 0 -2px;
+				width: 4px;
+				height: 120px;
+				background: #f00;	
+			}
+			/* 刻度  */
+			.scale {
+				position: absolute;
+				left: 50%;
+				margin-left: -2px;
+				width: 4px;
+				height: 10px;
+				background: #000;
+				/* 表盘宽度 / 2 */
+				transform-origin: center 150px;
+			}
+			/* 数字  */
+			.number {
+				position: absolute;
+				left: 50%;
+				margin-left: -3px;
+				width: 6px;
+				height: 18px;
+				background: #000;
+				transform-origin: center 150px;
+			}
+			span em {
+				position: absolute;
+				left: 50%;
+				margin-left: -50px;
+				width: 100px;
+				margin-top: 20px;
+				text-align: center;
+				font-style: normal;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="clock">
+			<div class="hand hour"></div>
+			<div class="hand min"></div>
+			<div class="hand sec"></div>
+			<div class="cap"></div>
+		</div>
+		
+		<script>
+			// 生成表盘刻度
+			function createScale() {
+				var n = 60;
+				for (var i = 0; i < n; i++) {
+					var clock = document.getElementById('clock');
+					var e = document.createElement('span');
+					if (i%5 == 0) {
+						var num = i/5;
+						if ( num == 0) {
+							num = 12;
+						}
+						e.className = 'number';
+						e.innerHTML = '<em>' + num + '</em>';
+						e.children[0].style.transform = 'rotate(' + -i*6 + 'deg)';
+					} else {
+						e.className = 'scale';
+					}
+					clock.appendChild(e);
+					e.style.transform = 'rotate(' + i*6 + 'deg)';
+				}				
+			}
+			
+			// 时针，分针，秒针移动
+			function clock() {
+				var now = new Date();
+				var h = now.getHours();
+				var m = now.getMinutes();
+				var s = now.getSeconds();
+				var ms = now.getMilliseconds();
+				var hh = document.querySelector('.hour');
+				var mm = document.querySelector('.min');
+				var ss = document.querySelector('.sec');
+				// 旋转轨迹
+				hh.style.transform = 'rotate(' + ((h / 12) * 360 + (m / 60) * 30) + 'deg)';
+				mm.style.transform = 'rotate(' + ((m / 60) * 360 + (s / 60) * 6) + 'deg)';
+				ss.style.transform = 'rotate(' + ((s / 60) * 360 + (ms / 1000) * 6) + 'deg)';
+			}
+			
+			createScale();
+			clock();
+			setInterval(clock, 30);
+			
+		</script>
+	</body>
+
+</html>
