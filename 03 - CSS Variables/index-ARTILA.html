@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Scoped CSS Variables and JS</title>
+		
+		<style>
+			body {
+				text-align: center;
+				background: #193549;
+				color: white;
+				font-family: 'helvetica neue', sans-serif;
+				font-weight: 100;
+				font-size: 50px;
+			}
+			
+			.controls {
+				margin-bottom: 50px;
+			}
+			
+			input {
+				width: 100px;
+			}
+			
+			/* CSS 变量  */
+			/* 定义语法是：--* */
+			/* :root 选择器匹配文档根元素。在 HTML中，根元素始终是html元素 */
+			:root {
+				--spacing: 10px;
+				--blur: 10px;
+				--base: #ffc600;
+			}
+			/* 变量使用语法是：var(--*)，其中*表示我们的变量名称  */
+			img {
+				padding: var(--spacing);
+				filter: blur(var(--blur));
+				background: var(--base);
+			}
+			
+			/* JS 高亮 */
+			.hl {
+				color: var(--base);
+			}
+		</style>
+		
+	</head>
+	<body>
+		<h2>Update CSS Variables with <span class="hl">JS</span></h2>
+		
+		<div class="controls">
+			<label for="spacing">Spacing:</label>
+			<input type="range" name="spacing" id="spacing" min="10" max="200" value="10" data-sizeing="px" >
+			
+			<label for="blur">blur</label>
+			<input type="range" name="blur" id="blur" min="0" max="25" value="10" data-sizeing="px" >
+			
+			<label for="base">Base Color</label>
+			<input type="color" name="base" id="base" value="#ffc600" />
+		</div>
+		
+		<img src="https://cdn.pixabay.com/photo/2017/04/20/14/00/palm-fern-2245814_960_720.jpg">
+		
+		<script>
+			// NodeList 和  Array 不一样, 有五个方法：item()，entries()，forEach()，keys()，values()。
+			const inputs = document.querySelectorAll('.controls input');
+			// 转化为数组  Array.prototype.slice.call(inputs);
+	
+			function handleUpdate() {
+				// 后缀，单位
+				const suffix = this.dataset.sizeing || '';
+				// Document.documentElement 是一个会返回文档对象（document）的根元素的只读属性（如HTML文档的 <html> 元素）。
+				// 所以要改变全局的CSS
+				// 这里为什么要选择 document.documentElement 呢？ 因为我们前面设置CSS变量的时候是分配在:root，它代表根元素。
+				document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+			}
+			
+			// 对于 一个 EventTarget 来说，可以 注册多个相同的 EventListener，但是重复的实例会被抛弃。	
+			// addEventListener 对任何 DOM 元素都是有效的，而不仅仅只对 HTML 元素有效。
+			inputs.forEach(input => input.addEventListener('change', handleUpdate));
+			inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+			// 这里为什么要监听 change 和  mousemove 两个事件呢？一个不行吗？
+			// 真的不行，缺一不可！
+			// 首先，change 事件被<input>, <select>, 和<textarea> 元素触发, 当用户提交对元素值的更改时。与  input 事件不同，change 事件不一定会对元素值的每次更改触发。
+			// 只有 change 事件的话，在第一次更改  spacing 和  blur 后，很大可能就无法起作用了。
+			// 因为它的触发时机： An element loses focus and its value changed since gaining focus.
+			// 只有 mousemove 事件的话，在更改 base 颜色时，还需要 在 选择区域移动，JS 的颜色才会改变，毕竟选择颜色的时候，鼠标并没有在目标元素内移动。
+			// 所以这两个缺一不可。
+		</script>
+	</body>
+</html>
