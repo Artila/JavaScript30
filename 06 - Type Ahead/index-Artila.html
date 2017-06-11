@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Type Ahead</title>
+		<style>
+			html {
+				box-sizing: border-box;
+				background: #FFC600;
+				font-family: 'helvetica neue';
+				font-size: 20px;
+				font-weight: 200;
+			}
+			*, *:before, *:after {
+				box-sizing: inherit;
+			}
+			input {
+				width: 100%;
+				padding: 20px;
+			}
+			.search-form {
+				max-width: 400px;
+				margin: 50px auto;
+			}
+			input.search {
+				margin: 0;
+				position: relative;
+				top: 10px;
+				left: -10%;
+				width: 120%;
+				border: 10px solid #F7F7F7;
+				border-radius: 5px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19); 
+				font-size: 40px;
+				text-align: center;
+				z-index: 2;
+				outline: 0;
+			}
+			.suggestions {
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+			.suggestions li {
+				margin: 0;
+				padding: 20px;
+				display: flex;
+				justify-content: space-between;
+				text-transform: capitalize;
+				transition: background 0.2s;
+				border-bottom: 1px solid #D8D8D8;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+				background: white;
+				list-style: none;
+			}
+			.suggestions li:nth-child(even) {
+				transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+				background: linear-gradient(to bottom, #fff 0%, #efefef 100%);
+			}
+			.suggestions li:nth-child(odd) {
+				transform: perspective(100px) rotateX(-3deg) translateY(3px);
+				background: linear-gradient(to top, #fff 0%, #efefef 100%);
+			}
+			span.population {
+				font-size: 15px;
+			}
+			.hl {
+				background: #ffc600;
+			}
+			a {
+				color: black;
+				background: rgba(0, 0, 0, 0.1);
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<form class="search-form">
+			<input type="text" class="search" placeholder="City or State">
+				<ul class="suggestions">
+					<li>Filter for a city</li>
+					<li>or a state</li>
+				</ul>
+		</form>
+		
+		<script>
+			const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+			
+			const cities = [];
+			
+			// 异步获取数据并解析，并把解析后的数据放进cities
+			fetch(endpoint)
+				.then(blob => blob.json())
+				.then(data => cities.push(...data));
+			
+			// 获取输入框中的信息,并寻找cities中匹配的内容
+			function findMatches(wordToMatch, cities) {
+				// 查找匹配的城市或者州
+				return cities.filter(place => {
+					const regex = new RegExp(wordToMatch, 'gi');
+					return place.city.match(regex) || place.state.match(regex);
+				});
+			}
+			
+			// 用每三位数字用逗号隔开
+			function numberWithCommas(x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			}
+			
+			function displayMatches() {
+				const matchArray = findMatches(this.value, cities);
+				const html = matchArray.map(place => {
+					const regex = new RegExp(this.value, 'gi');
+					const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+					const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+					return `
+					<li>
+						<span class="name">${cityName}, ${stateName}</span>
+						<span class="population">${numberWithCommas(place.population)}</span>
+					</li>
+					`;
+				}).join('');
+				
+				suggestions.innerHTML = html;
+			}
+			
+			const searchInput = document.querySelector('.search');
+			const suggestions = document.querySelector('.suggestions');
+			
+			searchInput.addEventListener('change', displayMatches);
+			searchInput.addEventListener('keyup', displayMatches);
+		</script>
+	</body>
+</html>
