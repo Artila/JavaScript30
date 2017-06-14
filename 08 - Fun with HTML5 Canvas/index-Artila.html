@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML5 Canvas</title>
+		<style>
+			html, body {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="draw" width="800" height="800"></canvas>
+		
+		<script>
+			const canvas = document.querySelector('#draw');
+			const ctx = canvas.getContext('2d');
+			// 显示区都为画布
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			// 设置图形轮廓的颜色
+			// 设置线条与线条间接合处的样式，round, bevel 和 miter。默认是 miter。
+			// 设置线条末端样式，butt，round 和 square。默认是 butt。
+			// 设置线条宽度
+			ctx.strokeStyle = '#BADA55';
+			ctx.lineJoin = 'round';
+			ctx.lineCap = 'round';
+			ctx.lineWidth = 100;
+			
+			let isDrawing = false;
+			let lastX = 0;
+			let lastY = 0;
+			let hue = 0;
+			let direction = true;
+			
+			function draw(e) {
+				if(!isDrawing) return;  // 当鼠标按键松开的时候，停止画图
+//				console.log(e);
+				// 图形轮廓的颜色
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+				// 生成路径
+				ctx.beginPath();
+				// 起点
+				ctx.moveTo(lastX, lastY);
+				// 绘制直线
+				ctx.lineTo(e.offsetX, e.offsetY);
+				// 绘制图形轮廓。
+				ctx.stroke();
+				
+				[lastX, lastY] = [e.offsetX, e.offsetY];
+				
+				hue++;
+				if (hue >= 360) {
+					hue = 0;
+				}
+				// 线条宽度在1~100之间
+				if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+					direction = !direction;
+				}
+				
+				if (direction) {
+					ctx.lineWidth++;
+				} else {
+					ctx.lineWidth--;
+				}
+			}
+			
+			canvas.addEventListener('mousemove', draw);
+			canvas.addEventListener('mousedown', (e) => {
+				isDrawing = true;
+				[lastX, lastY] = [e.offsetX, e.offsetY];
+			});
+			canvas.addEventListener('mouseup', () => isDrawing = false);
+			canvas.addEventListener('mouseout', () => isDrawing = false);  // 鼠标移出画布范围
+		</script>
+	</body>
+</html>
