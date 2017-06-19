@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>实现 Checkbox 中按住 Shift 的多选功能</title>
+		<style>	
+			html {
+				font-family: sans-serif;
+				background: #FFC600;
+			}
+			.inbox {
+				margin: 50px auto;
+				max-width: 400px;
+				border-radius: 5px;
+				box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+				background: white;
+			}
+			
+			.item {
+				display: flex;
+				align-items: center;
+				border-bottom: 1px solid #F1F1F1;
+			}
+			.item:last-child {
+				border-bottom: 0;
+			}
+			
+			input[type='checkbox'] {
+				margin: 20px;
+			}
+			p {
+				flex: 1;
+				margin: 0;
+				padding: 20px;
+				transition: background 0.2s;
+				border-left: 1px solid #D1E2FF;
+				font-family: 'helvetica neue';
+				font-size: 20px;
+				font-weight: 200;
+			}
+			input:checked + p {
+				background: #F9F9F9;
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="inbox">
+			<div class="item">
+				<input type="checkbox" />
+				<p>这是一个收件箱布局。</p>
+			</div>
+			<div class="item">
+				<input type="checkbox" />
+				<p>选中一个复选框</p>
+			</div>
+			<div class="item">
+				<input type="checkbox" />
+				<p>按下shift键</p>
+			</div>
+			<div class="item">
+				<input type="checkbox" />
+				<p>再选中一个下面的复选框</p>
+			</div>
+			<div class="item">
+				<input type="checkbox" />
+				<p>处于选中的复选框之间的所有复选框都会被选中</p>
+			</div>
+			<div class="item">
+				<input type="checkbox" />
+				<p>试着在没有任何库的帮助下</p>
+			</div>
+			<div class="item">
+				<input type="checkbox" />
+				<p>只用javaScript完成这个功能</p>
+			</div>
+		</div>
+		
+		<script>
+			const checkboxes = document.querySelectorAll('.inbox input[type=checkbox]');
+			const checkboxArr = Array.from(checkboxes);
+			
+			let lastChecked;
+			// 方法一：用变量 inBetween 对需要选中的元素进行标记,不太完美
+			function handleCheck(e) {
+				let inBetween = false;		
+//				console.log(lastChecked);
+				// 当按下shift键并且选中复选框
+				if(e.shiftKey && this.checked) {
+					checkboxes.forEach(checkbox => {
+//						console.log(checkbox);
+						if (checkbox === this || checkbox === lastChecked) {
+							inBetween = !inBetween;
+						}
+						
+						if (inBetween) {
+//						  console.log('checked');
+							checkbox.checked = true;
+						}
+					});
+				}	
+				lastChecked = this;
+			}
+			
+			// 方法二:利用索引选中需要的范围
+			function handleCheck2(e) {
+				if (!lastChecked) {
+					lastChecked = this;
+					return;
+				}
+				// 按下shift键，第二个复选框
+				if (e.shiftKey) {
+					// 第一，二个复选框的索引
+					let start = checkboxArr.indexOf(lastChecked);
+					let end = checkboxArr.indexOf(this);
+					// 要考虑正选，反选的情况
+					checkboxArr
+						.slice(Math.min(start, end), Math.max(start, end))
+						.forEach(checkbox => checkbox.checked = this.checked);
+				}
+				lastChecked = this;
+			}
+			
+			checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck2));
+		</script>
+	</body>
+</html>
