@@ -1,0 +1,151 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: linear-gradient(135deg, #7c1599 0%,#921099 48%,#7e4ae8 100%);
+	background-size: cover;
+}
+
+.player {
+	position: relative;
+	max-width: 750px;
+	border: 5px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	font-size: 0;
+	overflow: hidden;
+}
+/*--start--全屏--*/
+.player:fullscreen {
+	max-width: none;
+	width: 100%;
+}
+
+.player:-webkit-full-screen {
+	max-width: none;
+	width: 100%;	
+}
+/*--end--全屏--*/
+
+.player-controls {
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	flex-wrap: wrap; /*--换行--*/
+	width: 100%;
+	background:rgba(0, 0, 0, 0.1);
+	transition:all .3s;
+	transform: translateY(100%) translateY(-5px);
+}
+.player:hover .player-controls {
+	transform: translateY(0);
+}
+.player-controls > * {
+	flex: 1;
+}
+
+.progress {
+	position: relative;
+	display: flex;
+	flex: 10;
+	flex-basis: 100%;
+	height: 5px;
+	background: rgba(0, 0, 0, 0.5);
+	cursor:ew-resize;
+	transition:height 0.3s;
+}
+.player:hover .progress {
+  height:15px;
+}
+.progress-filled {
+	flex:0;
+  flex-basis:50%;
+	width: 50%;
+	background: #FFC600;
+}
+
+.player-video {
+	width: 100%;
+}
+
+.player-button {
+	background: none;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	max-width: 50%;
+	line-height: 1;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+.player-button:focus {
+  border-color: #ffc600;
+}
+.player-slider {
+	width: 10px;
+	height: 30px;
+}
+
+/*--不太规范的css，只适用部分浏览器--*/
+
+input[type=range] {
+	/*--重写input的样式，先把原有的样式去掉--*/
+	-webkit-appearance: none;
+	margin: 0 5px;
+	width: 100%;
+	background: transparent;
+}
+input[type=range]:focus {
+	/*--把轮廓去掉，原有的有一个框框包围着range--*/
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 8.4px;
+	border: 0.2px solid rgba(1, 1, 1, 0);
+	border-radius: 1.3px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+	background: rgba(255,255,255,0.8);
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	margin-top: -3.5px;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	box-shadow:0 0 2px rgba(0,0,0,0.2);
+	background: #ffc600;
+	cursor: pointer;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #BADA55;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+  background: #ffffff;
+  border-radius: 1.3px;
+  border: 0.2px solid rgba(1, 1, 1, 0);
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(13, 13, 13, 0);
+  height: 15px;
+  width: 15px;
+  border-radius: 50px;
+  background: #ffc600;
+  cursor: pointer;
+}
