@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>监听关键字</title>
+		<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+	</head>
+	<body>
+		<p>单击页面后，输入暗号便会出现独角兽的动画效果。暗号是yes。</p>
+		
+		<script>
+			const pressed = [];
+			const secretCode = 'yes';
+			
+			window.addEventListener('keyup', (e) => {
+				console.log(e.key);
+				pressed.push(e.key);
+				pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+				
+				if (pressed.join('').includes(secretCode)) {
+					console.log('Prefect!');
+					cornify_add();
+				}
+				
+				console.log(pressed);
+			});
+		</script>
+	</body>
+</html>
