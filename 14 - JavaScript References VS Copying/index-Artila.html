@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS 变量的复制和引用</title>
+	</head>
+	<body>
+		<p>请打开控制台观看效果。</p>
+		
+		<script>
+			// 1. 基本类型按值访问，常见的基本类型有：String, Number, Boolean, Null, Undefined。
+			let str = 'string';
+			let str2 = str;
+			console.log(str, str2); 
+			
+			// 改变 str2 的值，会发现 str2 的改变没有影响到 str1
+			str2 = 'str2';
+			console.log(str, str2); 
+			
+			let num = 5;
+			let num2 = num;
+			console.log(num, num2);
+			
+			// 改变 num2 的值，会发现num2 的改变没有影响到 num1
+			num2 = 55;
+			console.log(num, num2);
+			
+			// 2. 引用类型的值是按引用访问的。（复制时，操作的是引用，添加属性时，操作的是对象。）
+			const players = ['a1', 'a2', 'a3', 'a4'];			
+			const team = players;
+			console.log(players, team);
+			
+			// 改变 team 的值，会发现 team 的改变引起了 players 的改变。
+			// 因为它们复制的是一个指针，而不是数组，两个变量指向的是用一个对象
+			team[3] = 'a1';
+			console.log(players, team);
+			
+			// 想要复制一个数组，又不影响原来的数组有以下几种方法。
+			// 1. slice() 方法可从已有的数组中返回选定的元素，并且不会改变原始数组。
+			const team2 = players.slice();
+			team2[3] = 'a2';
+			console.log(players, team2);
+		
+			// 2. 用 concat 把原始数组的元素添加到新数组，该方法不会改变现有的数组。
+			const team3 = [].concat(players);
+			team3[3] = 'a3';
+			console.log(players, team3);
+			
+			// 3. ES6 的 spread 操作符
+			const team4 = [...players];
+  	  team4[3] = 'a4';
+  	  console.log(players, team4);
+			
+			// 4. Array.from
+			const team5 = Array.from(players);
+			team5[3] = 'a5';
+			console.log(players, team5);
+
+			// 以上4种方法在新数组的改变不会影响到原始数组, 反过来, 原始数组的改变也不会影响到新数组
+			players[3] = 'a0';
+			console.log(players, team, team2, team3, team4, team5);
+			
+			// 对象和数组的复制都是相同的方式
+			
+			const person = {
+				name: 'Artila',
+				age: '12'
+			};
+			
+			// 同样的复制，新对象的改变会影响到原始对象
+			const captain = person;
+			captain.age = '21';
+			console.log(person, captain);
+			
+			// 如果只想复制原始对象的属性，以便新对象的改变不会影响到原始对象的属性
+			// 1. ES6 的 Object.assign() 实现浅复制
+			
+			const cap2 = Object.assign({}, person, { number: 99, age: 12 });
+			console.log(person, cap2);
+			
+			// 2. spread 
+//			const cap3 = {...person};
+
+
+			// 浅复制所针对的是对象里的属性，而当对象的属性是一个对象的时候，也就是对象里面套对象，需要的是深复制。
+			const obj = {
+				name: 'first',
+				age: '11',
+				obj2: {
+					num: '11'
+				}
+			};
+
+			console.log(obj);
+			
+			const dev = Object.assign({}, obj);
+			dev.age = '22';
+			dev.obj2.num = '22';
+			console.log(obj, dev);
+			// 会发现 obj 的 age 没有改变，但是 num 改变了
+			// 采取深复制最常用的方法是 JSON.parse(JSON.stringify(obj));
+			
+			const dev2 = JSON.parse(JSON.stringify(obj));
+			dev2.age = '33';
+			dev2.obj2.num = '33';
+			console.log(obj, dev2);
+			// 你会发现 dev2 的改变并没有影响到 obj
+			// 但是这种方法也有它的局限性：
+			// 无法复制函数
+      // 原型链没了，对象就是object，所属的类没了。
+      // 但是它简单呀，大多时候完全可以满足需求了
+			
+		</script>
+	</body>
+</html>
