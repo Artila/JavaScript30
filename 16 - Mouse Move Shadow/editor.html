@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html {
+				box-sizing: border-box;
+				background: #FFFFCC;
+			}
+			*, *:before, *:after {
+				box-sizing: inherit;
+			}
+			
+			.editor {
+				display: block;
+				margin: 50px auto;
+				width: 100%;
+				
+			}
+			
+			.controls {
+				margin: 0 auto;
+				display: block;
+				height: 35px;
+				width: 70%;
+        border-bottom: 1px solid #ddd;
+			}
+			
+			.content {
+				margin: 0 auto;
+				padding: 10px;
+				width: 70%;								
+				font-size: 20px;				
+        outline: 0;
+			}
+			
+			.controls a {
+				display: inline-block;
+				width: 35px;
+				height: 35px;
+				line-height: 35px;
+				vertical-align: top;
+				text-decoration: none;
+				text-align: center;
+				color: #adb5b9;
+				cursor: pointer;
+			}
+			
+			.controls [data-role = "bold"] {
+				font-weight: bold;
+			}
+
+			.controls [data-role = "italic"] {
+				font-style: italic;
+			}
+			
+			.controls [data-role = "underline"] {
+				text-decoration: underline;
+			}			
+			.wordsCount {	
+				float: right;
+				margin: 0;			
+				display: inline-block;
+				height: 35px;
+				line-height: 35px;
+			}
+			.wordsCount span {
+				color: #018DED;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="editor">
+			<div class="controls">
+				<a href="#" data-role="bold">B</a>
+				<a href="#" data-role="italic">I</a>
+				<a href="#" data-role="underline">U</a>
+				<a href="#" data-role="justifyLeft">左</a>
+				<a href="#" data-role="justifyCenter">中</a>
+				<a href="#" data-role="justifyRight">右</a>
+				<p class="wordsCount">字数统计：<span id="count"></span></p>
+			</div>
+			<div class="content" contenteditable="true">
+				这是一个简单的文本编辑器。			
+			</div>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
+		<script>
+			const commands = document.querySelectorAll('.controls a');
+			const content = document.querySelector('.content');
+					
+			
+			function editor(e) {
+				e.preventDefault();
+				const name = e.target.dataset.role;	
+				
+				return document.execCommand(name);				
+			}
+			
+			function wordsCount() {
+				const words = content.innerText;	
+				const reg = /\s+/g;
+				const len = words.replace(reg, '').length;
+				const count = document.getElementById('count');
+				
+				count.innerHTML = len;
+			}
+			
+			wordsCount();
+			
+			commands.forEach(command => {
+				command.addEventListener('click', editor);
+			});
+			
+			content.addEventListener('keyup', wordsCount);
+
+		</script>
+	</body>
+</html>
