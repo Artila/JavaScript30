@@ -17,7 +17,7 @@ JavaScirpt30 是 Wes Bos 推出的一个 30 天挑战。项目免费提供了 30
 提醒一句，这些都是没有字幕的，不会英语的人，可以直接看代码，都不是很难的。不会的地方就百度，谷歌一下。
 
 
-源代码可以直接访问[Wes Bos](https://github.com/wesbos)下载，在作者这里可以找到很多练习者的学习指南。
+源代码可以直接访问[Wes Bos](https://github.com/wesbos/JavaScript30)下载，在作者这里可以找到很多练习者的学习指南。
 
 每个练习的文件夹至少有两个文件，后缀是
 
@@ -46,11 +46,11 @@ JavaScirpt30 是 Wes Bos 推出的一个 30 天挑战。项目免费提供了 30
 14. [x] JavaScript References vs. Copying | [变量的复制,引用](https://github.com/Artila/JavaScript30/blob/master/14%20-%20JavaScript%20References%20VS%20Copying/index-Artila.html)
 15. [ ] LocalStorage | [HTML5本地存储的使用]()
 16. [ ] Mouse Move Shadow | [随着鼠标移动而游移的文字阴影]()
-17. [ ] Sort Without Articles | [除掉冠词后再按照字母顺序排序] ()
+17. [ ] Sort Without Articles | [除掉冠词后再按照字母顺序排序]()
 18. [ ] Adding Up Times with Reduce | [计算视频总时长]()
 19. [ ] Webcam Fun | [摄像头和canvas]()
 20. [ ] Speech Detection | [语音识别]()
-21. [ ] Geolocation | 探查地理位置
+21. [ ] Geolocation | 探查地理位置——这个是有关IOS系统的，对我来说暂时没什么用处
 22. [ ] Follow Along Link Highlighter
 23. [ ] Speech Synthesis
 24. [ ] Sticky Nav
