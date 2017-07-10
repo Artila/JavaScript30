@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>LocalStorage 的应用</title>
+		<style>
+			html {
+				box-sizing: border-box;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+				text-align: center;
+				background: url(img/restaurant.jpg) center no-repeat;
+				background-size: cover;
+			}
+			
+			*, *:before, *:after {
+				box-sizing: inherit;
+			}
+			
+			.wrapper {
+				padding: 20px;
+				max-width: 350px;
+				background: rgba(255, 255, 255, 0.95);
+				box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			
+			h2 {
+				margin: 0;
+				font-weight: 200;
+				text-align: center;
+			}
+			
+			.plates {
+				margin: 0;
+				padding: 0;
+				text-align: left;
+				list-style: none;
+			}
+			
+			.plates li {
+				display: flex;
+				padding: 10px 0;
+				font-weight: 100;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+			}
+			
+			.plates label {
+				flex: 1;
+				cursor: pointer;
+			}
+			
+			.plates input {
+				display: none;
+			}
+			
+			.plates input + label:before {
+				content: '\2610';
+				margin-right: 10px;
+			}
+			
+			.plates input:checked + label:before {
+				content: '\2714';
+			}
+			
+			.add-items {
+				margin-top: 20px;
+			}
+			
+			.add-items input {
+				padding: 10px;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+				outline: 0;
+			}
+			
+			.clear {
+				display: block;
+				margin-top: 10px;
+				padding: 10px;
+				width: 100%;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="wrapper">
+			<h2>LOCAL TAPAS</h2>
+			<p></p>
+			<ul class="plates">
+				<li>Loading Tapas</li>
+			</ul>
+			
+			<form class="add-items">
+				<input type="text" name="item" placeholder="Item Name" required>
+				<input type="submit" value="+ Add Item" >				
+			</form>
+			
+			<input type="button" class="clear" value="Clear Item">
+		</div>
+		
+		<script>
+			const addItems = document.querySelector('.add-items');
+			const itemsList = document.querySelector('.plates');
+			const items = JSON.parse(localStorage.getItem('items')) || [];
+			const clearItems = document.querySelector('.clear');
+			
+			function addItem(e) {
+				e.preventDefault();
+				const text = (this.querySelector('[name=item]')).value;
+				const item = {
+					text,
+					done: false
+				};
+				
+				items.push(item);
+				populateList(items, itemsList);
+				localStorage.setItem('items', JSON.stringify(items));
+				this.reset(); // 清空输入框								
+			}
+			
+			function populateList(plates = [], platesList) {
+				platesList.innerHTML = plates.map((plate, i) => {
+					return `
+						<li>
+							<input type = "checkbox" data-index = ${i} id = "item${i}" ${plate.done ? 'checked' : ''}>
+							<label for = "item${i}">${plate.text}</label>
+						</li>
+					`;
+				}).join('');
+			}
+			
+			function toggleDone(e) {
+				if (!e.target.matches('input')) return; // 如果不是input，不需要
+				const el = e.target;
+				const index = el.dataset.index;
+				
+				items[index].done = !items[index].done;
+				
+				localStorage.setItem('items', JSON.stringify(items));
+				populateList(items, itemsList);
+				
+			}
+			
+			function clearItem() {
+				// 清空items需要从三个方面，展示item的itemsList，储存item的数组items(注意是const)，还有localStorage
+				itemsList.innerHTML = '';
+				items.splice(0);
+				localStorage.clear();
+			}
+			
+			addItems.addEventListener('submit', addItem);
+			itemsList.addEventListener('click', toggleDone);
+			clearItems.addEventListener('click', clearItem);
+			populateList(items, itemsList);
+		</script>
+	</body>
+</html>
