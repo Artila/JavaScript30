@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>去掉冠词之后按照字母顺序排列</title>
+		<style>
+			body {
+				margin: 0;
+				font-family: sans-serif;
+				background: url(img/bg17.jpg);
+				background-size: cover;
+				min-height: 100vh;
+			}
+			
+			#bands {
+				margin: 50px auto;
+				padding: 0;
+				width: 500px;
+				font-size: 20px;
+				list-style: inside square;
+				background: white;
+				box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+			}
+			
+			#bands li {
+				border-bottom: 1px solid #EFEFEF;
+				padding: 20px;
+			}
+			
+			#bands li:last-child {
+				border-bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="bands"></ul>
+		
+		<script>
+			const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+			
+			// 把乐队名中以‘a, an, the’冠词开头的部分去掉，然后去掉两端的空格符
+			function strip(bandName) {
+				return bandName.replace(/^(a |the |an)/i, '').trim();
+			}
+			
+			// 按照字母顺序排列
+			const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+			
+			document.querySelector('#bands').innerHTML = 
+				sortedBands
+					.map(band => `<li>${band}</li>`)
+					.join(''); // 这里要把作为分隔符的‘，’去掉，所以需要join('')
+		</script>
+	</body>
+</html>
