@@ -48,15 +48,15 @@ JavaScirpt30 是 Wes Bos 推出的一个 30 天挑战。项目免费提供了 30
 16. [ ] Mouse Move Shadow | [随着鼠标移动而游移的文字阴影]()
 17. [ ] Sort Without Articles | [除掉冠词后再按照字母顺序排序]()
 18. [ ] Adding Up Times with Reduce | [计算视频总时长]()
-19. [ ] Webcam Fun | [摄像头和canvas]()
-20. [ ] Speech Detection | [语音识别]()
+19. [ ] Webcam Fun | 摄像头和canvas
+20. [ ] Speech Detection | 语音识别
 21. [ ] Geolocation | 探查地理位置——这个是有关IOS系统的，对我来说暂时没什么用处
-22. [ ] Follow Along Link Highlighter
-23. [ ] Speech Synthesis
-24. [ ] Sticky Nav
-25. [ ] Event Capture, Propagation, Bubbling, and Once
-26. [ ] Stripe Follow Along Nav
+22. [ ] Follow Along Link Highlighter | [移动到链接部分高亮]()
+23. [ ] Speech Synthesis | 语音合成
+24. [ ] Sticky Nav | 悬浮导航栏
+25. [ ] Event Capture, Propagation, Bubbling, and Once | 事件捕获、传播、冒泡
+26. [ ] Stripe Follow Along Nav | 
 27. [ ] Click and Drag
 28. [ ] Video Speed Controller
-29. [ ] Countdown Timer
-30. [ ] Whack A Mole
+29. [ ] Countdown Timer | 倒计时
+30. [ ] Whack A Mole | 打鼹鼠
