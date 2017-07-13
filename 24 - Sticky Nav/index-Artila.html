@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>悬浮导航栏</title>
+		<style>
+			html {
+				box-sizing: border-box;
+				background: #eee;
+				font-family:'helvetica neue';
+				font-size: 20px;
+				font-weight: 200;
+			}
+			*, *:before, *:after {
+			  box-sizing: inherit;
+			}
+			body {
+				margin: 0;
+			}
+			
+			header {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 50vh;
+				background: url(img/bg24.jpg) bottom center no-repeat;
+				background-size: cover;
+				text-align: center;
+			}
+			h1 {
+				font-size: 7vw;
+				color: white;
+				text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
+			}
+			
+			nav {
+				position: relative;
+				top: 0;
+				width: 100%;
+				background: black;
+				z-index: 1;
+			}
+			
+			body.fixed-nav nav {
+				position: fixed;
+				box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+			}
+			
+			nav ul {
+				margin: 0;
+				padding: 0;
+				display: flex;
+				list-style: none;
+				transition: all .5s;
+			}
+			nav li {
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+			}
+			nav a {
+				display: inline-block;
+				padding: 20px;
+				text-decoration: none;
+				text-transform: uppercase;
+				color: white;	
+				transition: all 0.2s;			
+			}
+			
+			li.logo {
+				max-width: 0;
+				font-weight: 600;
+				font-size: 30px;
+				background: white;
+				overflow: hidden;
+				transition: all 0.5s;
+			}
+			li.logo a {
+				color: black;
+			}
+			
+			.fixed-nav li.logo {
+				max-width: 500px;
+			}
+			
+			.site-wrap {
+				padding: 40px;
+				max-width: 700px;
+				margin: 70px auto;
+				text-align: justify;
+				background: white;
+				box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);	
+				transform: scale(0.98);
+				transition: transform 0.5s;		
+				}
+				
+				body.fixed-nav .site-wrap {
+					transform: scale(1);
+				}
+		</style>
+	</head>
+	<body>
+		
+		<header>
+			<h1>A story about getting lost.</h1>
+		</header>
+		
+		<nav id="main">
+			<ul>
+				<li class="logo"><a href="#">LOST.</a></li>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Images</a></li>
+				<li><a href="#">Locations</a></li>
+				<li><a href="#">Maps</a></li>
+			</ul>
+		</nav>
+		
+		<div class="site-wrap">
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>		
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>	
+		</div>
+		
+		<script>
+			const nav = document.querySelector('#main');
+			let topOfNav = nav.offsetTop;
+			
+			function fixNav() {
+				// 导航栏到达视口顶部
+				if (window.scrollY >= topOfNav) {
+					// 导航栏会遮住一点文档
+					document.body.style.paddingTop = nav.offsetHeight + 'px';
+					
+					document.body.classList.add('fixed-nav');
+					
+				} else {
+					document.body.classList.remove('fixed-nav');
+          document.body.style.paddingTop = 0;
+				}
+			}
+			
+			window.addEventListener('scroll', fixNav);
+		</script>
+	</body>
+</html>
