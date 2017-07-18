@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>倒计时</title>
+		<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+		<style>
+			html {
+				box-sizing: border-box;
+				font-size: 10px;
+				background: #8E24AA;
+				background: linear-gradient(45deg,  #42a5f5 0%,#478ed1 50%,#0d47a1 100%);
+			}
+			*, *:before, *:after {
+			  box-sizing: inherit;
+			}			
+			
+			body {
+				margin: 0;
+				font-family: 'Inconsolata', monospace;
+				text-align: center;
+			}
+			.timer {
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+			}
+			.timer-controls {
+				display: flex;
+			}
+			.timer-controls > * {
+				flex: 1;
+			}
+			.timer-controls form {
+				display: flex;
+				flex: 1;
+			}
+			.timer-controls input {
+				padding: 2rem;
+				flex: 1;
+				border: 0;
+			}
+			.timer-button {
+				padding: 1rem;
+				font-size: 2rem;
+				font-family: 'Inconsolata', monospace;
+				text-transform: uppercase;
+				color: white;
+				border: 0;
+				background: none;
+				background: rgba(0, 0, 0, 0.1);
+				cursor: pointer;
+				border-right: 1px solid rgba(0, 0, 0, 0.2);
+				border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+			}
+			.timer-button:hover, .timer-button:focus {
+				background: rgba(0, 0, 0, 0.2);
+				outline: 0;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="timer">
+			<div class="timer-controls">
+				<button data-time = "20" class = "timer-button">20 Secs</button>
+				<button data-time = "300" class = "timer-button">Work 5</button>
+				<button data-time = "900" class = "timer-button">Quick 15</button>
+				<button data-time = "1200" class = "timer-button">Snack 20</button>
+				<button data-time = "3600" class = "timer-button">Lunch Break</button>
+				
+				<form name = "customForm" id = "custom">
+					<input type="text" name="minutes" placeholder="Enter Minutes">
+				</form>
+			</div>
+		
+			<div class="display">
+				<h1 class="display-time-left"></h1>
+				<p class="display-end-time"></p>
+			</div>
+		</div>
+		
+		<script>
+			let countdown;
+			const timerDisplay = document.querySelector('.display-time-left');
+			const endTime = document.querySelector('.display-end-time');
+			const buttons = document.querySelectorAll('[data-time]');
+			
+			function startTimer() {
+				const seconds = parseInt(this.dataset.time);
+				timer(seconds);
+			}
+			
+			function timer(seconds) {
+				const now = Date.now();
+				const then = now + seconds * 1000;
+				
+				console.log(now, then);
+			}
+			
+			buttons.forEach(button => button.addEventListener('click', startTimer));
+			
+		</script>
+	</body>
+</html>
