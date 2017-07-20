@@ -44,19 +44,19 @@ JavaScirpt30 是 Wes Bos 推出的一个 30 天挑战。项目免费提供了 30
 12. [x] Key Sequence Detection | [监听关键字](https://github.com/Artila/JavaScript30/blob/master/12%20-%20Key%20Sequence%20Detection/index-Artila.html)
 13. [x] Slide in on Scroll | [页面滚动出现的图片](https://github.com/Artila/JavaScript30/blob/master/13%20-%20Slide%20in%20on%20Scroll/index-Artila.html)
 14. [x] JavaScript References vs. Copying | [变量的复制,引用](https://github.com/Artila/JavaScript30/blob/master/14%20-%20JavaScript%20References%20VS%20Copying/index-Artila.html)
-15. [ ] LocalStorage | [HTML5本地存储的使用]()
-16. [ ] Mouse Move Shadow | [随着鼠标移动而游移的文字阴影]()
-17. [ ] Sort Without Articles | [除掉冠词后再按照字母顺序排序]()
-18. [ ] Adding Up Times with Reduce | [计算视频总时长]()
+15. [x] LocalStorage | [HTML5本地存储的使用]()
+16. [x] Mouse Move Shadow | [随着鼠标移动而游移的文字阴影]()
+17. [x] Sort Without Articles | [除掉冠词后再按照字母顺序排序]()
+18. [x] Adding Up Times with Reduce | [计算视频总时长]()
 19. [ ] Webcam Fun | 摄像头和canvas
 20. [ ] Speech Detection | 语音识别
 21. [ ] Geolocation | 探查地理位置——这个是有关IOS系统的，对我来说暂时没什么用处
-22. [ ] Follow Along Link Highlighter | [移动到链接部分高亮]()
+22. [x] Follow Along Link Highlighter | [移动到链接部分高亮]()
 23. [ ] Speech Synthesis | 语音合成
-24. [ ] Sticky Nav | 悬浮导航栏
+24. [x] Sticky Nav | 悬浮导航栏
 25. [ ] Event Capture, Propagation, Bubbling, and Once | 事件捕获、传播、冒泡
-26. [ ] Stripe Follow Along Nav | 
-27. [ ] Click and Drag
-28. [ ] Video Speed Controller
-29. [ ] Countdown Timer | 倒计时
-30. [ ] Whack A Mole | 打鼹鼠
+26. [ ] Stripe Follow Along Nav | 随着鼠标移动出现导航栏菜单
+27. [x] Click and Drag | 拖动长画面
+28. [ ] Video Speed Controller | 视频控制器
+29. [x] Countdown Timer | 倒计时
+30. [x] Whack A Mole | 打鼹鼠
