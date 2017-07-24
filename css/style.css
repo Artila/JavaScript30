@@ -17,6 +17,8 @@ header {
 	opacity: 0.7;
 }
 
+/* portfolio */
+
 .portfolio {
 	margin: 3rem auto;
 }
@@ -51,6 +53,12 @@ header {
 	list-style: none;
 }
 
+.desc p {
+  padding: 2px 4px;
+  margin-bottom: 5px;
+  display: inline-block;
+  font-size: 11px;
+}
 
 /* tags */
 
