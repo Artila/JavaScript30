@@ -27,7 +27,7 @@
 			/* :root 选择器匹配文档根元素。在 HTML中，根元素始终是html元素 */
 			:root {
 				--spacing: 10px;
-				--blur: 10px;
+				--blur: 0;
 				--base: #ffc600;
 			}
 			/* 变量使用语法是：var(--*)，其中*表示我们的变量名称  */
@@ -52,13 +52,13 @@
 			<input type="range" name="spacing" id="spacing" min="10" max="200" value="10" data-sizeing="px" >
 			
 			<label for="blur">blur</label>
-			<input type="range" name="blur" id="blur" min="0" max="25" value="10" data-sizeing="px" >
+			<input type="range" name="blur" id="blur" min="0" max="25" value="0" data-sizeing="px" >
 			
 			<label for="base">Base Color</label>
 			<input type="color" name="base" id="base" value="#ffc600" />
 		</div>
 		
-		<img src="https://cdn.pixabay.com/photo/2017/04/20/14/00/palm-fern-2245814_960_720.jpg">
+		<img src="img/bg03.jpg">
 		
 		<script>
 			// NodeList 和  Array 不一样, 有五个方法：item()，entries()，forEach()，keys()，values()。
