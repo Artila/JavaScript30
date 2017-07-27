@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>视频播放速度控制器</title>
+	  <style>
+			body {
+				margin: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				background: url(img/bg28.jpg);
+				background-size: cover;
+				font-family: sans-serif;
+			}
+			.wrapper {
+				width: 850px;
+				display: flex;
+			}			
+			video {
+				box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+			}
+			
+			.speed {
+				flex: 1;
+				display: flex;
+				align-items: flex-start;
+				margin: 10px;
+				border-radius: 50px;
+				box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+				background: #efefef;
+				overflow: hidden;
+			}
+			
+			.speed-bar {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2px;
+				width: 100%;
+				height: 16.3%;
+				background: linear-gradient(-170deg, #2376ae 0%, #c16ecf 100%);
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<video src="video/Overwatch.mp4" class="flex" width="765" height="430" controls></video>
+			<!-- controls : 带有浏览器默认控件的 video 元素 -->
+			
+			<div class="speed">
+				<div class="speed-bar">1×</div>
+			</div>
+		</div>
+		
+		<script>
+			const speed = document.querySelector('.speed');
+			const bar = speed.querySelector('.speed-bar');
+			const video = document.querySelector('.flex');
+			
+			function handleMove(e) {
+				const y = e.pageY - this.offsetTop;
+				const percent = y / this.offsetHeight;
+				
+				const min = 0.4;
+				const max = 4;
+				// 把一个数字舍入为最接近的整数。
+				const height = Math.round(percent * 100) + '%';
+				const playbackRate = percent * (max - min) + min;
+				
+				bar.style.height = height;
+				bar.textContent = playbackRate.toFixed(2) + '×';
+				
+				video.playbackRate = playbackRate;
+			}
+			
+			speed.addEventListener('mousemove', handleMove);
+		</script>
+	</body>
+</html>
