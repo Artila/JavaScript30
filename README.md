@@ -24,39 +24,37 @@ JavaScirpt30 是 Wes Bos 推出的一个 30 天挑战。项目免费提供了 30
 - **START**：初始文档，作者为我们提供了基础的 HTML 和 CSS 部分，我们可以直接编写 JavaScript 代码，实现练习功能即可。
 - **FINISHED**：最终文档，可以观看练习的效果和完成思路，简而言之，就是参考答案。
 
-想看中文指南的也有，就是这位[缉熙Soyaine](https://github.com/soyaine/JavaScript30)。
-
-不过中文的目前只更新到第12天。
+我完成的练习都展示在这个[链接](https://artila.github.io/JavaScript30)
 
 下面的就是我自己完成的练习目录
 
-1. [x] JavaScript Drum Kit |  [纯 JS 模拟敲鼓效果](https://github.com/Artila/JavaScript30/blob/master/01%20-%20JavaScript%20Drum%20Kit/index-ARTILA.html)
-2. [x] JS + CSS Clock |  [纯 JavaScript+CSS 时钟效果](https://github.com/Artila/JavaScript30/blob/master/02%20-%20JS%20and%20CSS%20Clock/index-ARTILA.html)
-3. [x] CSS Variables |  [用 CSS 变量实现拖动控制参数效果](https://github.com/Artila/JavaScript30/blob/master/03%20-%20CSS%20Variables/index-ARTILA.html)
-4. [x] Array Cardio, Day 1 | [数组基本操作方法示例一](https://github.com/Artila/JavaScript30/blob/master/04%20-%20Array%20Cardio%20Day%201/index-Artila.html)
-5. [x] Flex Panel Gallery | [可伸缩的图片墙在线效果](https://github.com/Artila/JavaScript30/blob/master/05%20-%20Flex%20Panel%20Gallery/index-Artila.html)
-6. [x] Type Ahead |  [根据关键词快速匹配美国城市和州的效果](https://github.com/Artila/JavaScript30/blob/master/06%20-%20Type%20Ahead/index-Artila.html)
-7. [x] Array Cardio, Day 2 | [数组基本操作方法示例二](https://github.com/Artila/JavaScript30/blob/master/07%20-%20Array%20Cardio%20Day%202/index-Artila.html)
-8. [x] Fun with HTML5 Canvas | [彩虹画笔绘画板在线效果](https://github.com/Artila/JavaScript30/blob/master/08%20-%20Fun%20with%20HTML5%20Canvas/index-Artila.html) 
-9. [x] Dev Tools Domination | [Console 调试技巧在线示例](https://github.com/Artila/JavaScript30/blob/master/09%20-%20Dev%20Tools%20Domination/index-Artila.html)
-10. [x] Hold Shift and Check Checkboxes | [Shift 批量选中在线效果](https://github.com/Artila/JavaScript30/blob/master/10%20-%20Hold%20Shift%20and%20Check%20Checkboxes/index-Artila.html)
-11. [x] Custom Video Player | [视频播放器](https://github.com/Artila/JavaScript30/blob/master/11%20-%20Custom%20Video%20Player/index-Artila.html)
-12. [x] Key Sequence Detection | [监听关键字](https://github.com/Artila/JavaScript30/blob/master/12%20-%20Key%20Sequence%20Detection/index-Artila.html)
-13. [x] Slide in on Scroll | [页面滚动出现的图片](https://github.com/Artila/JavaScript30/blob/master/13%20-%20Slide%20in%20on%20Scroll/index-Artila.html)
-14. [x] JavaScript References vs. Copying | [变量的复制,引用](https://github.com/Artila/JavaScript30/blob/master/14%20-%20JavaScript%20References%20VS%20Copying/index-Artila.html)
-15. [x] LocalStorage | [HTML5本地存储的使用]()
-16. [x] Mouse Move Shadow | [随着鼠标移动而游移的文字阴影]()
-17. [x] Sort Without Articles | [除掉冠词后再按照字母顺序排序]()
-18. [x] Adding Up Times with Reduce | [计算视频总时长]()
+1. [x] JavaScript Drum Kit |  [纯 JS 模拟敲鼓效果](https://artila.github.io/JavaScript30/01 - JavaScript Drum Kit/index-ARTILA.html)
+2. [x] JS + CSS Clock |  [纯 JavaScript+CSS 时钟效果](https://artila.github.io/JavaScript30/02 - JS and CSS Clock/index-ARTILA.html)
+3. [x] CSS Variables |  [用 CSS 变量实现拖动控制参数效果](https://artila.github.io/JavaScript30/03 - CSS Variables/index-ARTILA.html)
+4. [x] Array Cardio, Day 1 | [数组基本操作方法示例一](https://artila.github.io/JavaScript30/04 - Array Cardio Day 1/index-Artila.html)
+5. [x] Flex Panel Gallery | [可伸缩的图片墙在线效果](https://artila.github.io/JavaScript30/05 - Flex Panel Gallery/index-Artila.html)
+6. [x] Type Ahead |  [根据关键词快速匹配美国城市和州的效果](https://artila.github.io/JavaScript30/)
+7. [x] Array Cardio, Day 2 | [数组基本操作方法示例二](https://artila.github.io/JavaScript30/)
+8. [x] Fun with HTML5 Canvas | [彩虹画笔绘画板在线效果](https://artila.github.io/JavaScript30/) 
+9. [x] Dev Tools Domination | [Console 调试技巧在线示例](https://artila.github.io/JavaScript30/)
+10. [x] Hold Shift and Check Checkboxes | [Shift 批量选中在线效果](https://artila.github.io/JavaScript30/)
+11. [x] Custom Video Player | [视频播放器](https://artila.github.io/JavaScript30/)
+12. [x] Key Sequence Detection | [监听关键字](https://artila.github.io/JavaScript30/)
+13. [x] Slide in on Scroll | [页面滚动出现的图片](https://artila.github.io/JavaScript30/)
+14. [x] JavaScript References vs. Copying | [变量的复制,引用](https://artila.github.io/JavaScript30/)
+15. [x] LocalStorage | [HTML5本地存储的使用](https://artila.github.io/JavaScript30/)
+16. [x] Mouse Move Shadow | [随着鼠标移动而游移的文字阴影](https://artila.github.io/JavaScript30/)
+17. [x] Sort Without Articles | [除掉冠词后再按照字母顺序排序](https://artila.github.io/JavaScript30/)
+18. [x] Adding Up Times with Reduce | [计算视频总时长](https://artila.github.io/JavaScript30/)
 19. [ ] Webcam Fun | 摄像头和canvas
 20. [ ] Speech Detection | 语音识别
 21. [ ] Geolocation | 探查地理位置——这个是有关IOS系统的，对我来说暂时没什么用处
-22. [x] Follow Along Link Highlighter | [移动到链接部分高亮]()
+22. [x] Follow Along Link Highlighter | [移动到链接部分高亮](https://artila.github.io/JavaScript30/)
 23. [ ] Speech Synthesis | 语音合成
-24. [x] Sticky Nav | 悬浮导航栏
-25. [ ] Event Capture, Propagation, Bubbling, and Once | 事件捕获、传播、冒泡
-26. [ ] Stripe Follow Along Nav | 随着鼠标移动出现导航栏菜单
-27. [x] Click and Drag | 拖动长画面
-28. [ ] Video Speed Controller | 视频控制器
-29. [x] Countdown Timer | 倒计时
-30. [x] Whack A Mole | 打鼹鼠
+24. [x] Sticky Nav | [悬浮导航栏](https://artila.github.io/JavaScript30/)
+25. [x] Event Capture, Propagation, Bubbling, and Once | [事件捕获、传播、冒泡](https://artila.github.io/JavaScript30/)
+26. [x] Stripe Follow Along Nav | [随着鼠标移动出现导航栏菜单](https://artila.github.io/JavaScript30/)
+27. [x] Click and Drag | [拖动长画面](https://artila.github.io/JavaScript30/)
+28. [x] Video Speed Controller | [视频控制器](https://artila.github.io/JavaScript30/)
+29. [x] Countdown Timer | [倒计时](https://artila.github.io/JavaScript30/)
+30. [x] Whack A Mole | [打鼹鼠](https://artila.github.io/JavaScript30/)
