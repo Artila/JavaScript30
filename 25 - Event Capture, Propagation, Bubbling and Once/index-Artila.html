@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>冒泡和捕获</title>
+		<style>
+			html {
+				box-sizing: border-box;
+			}
+			*, *:before, *:after {
+				box-sizing: inherit;
+			}
+			
+			div {
+				width: 100%;
+				padding: 100px;
+			}
+			
+			.one {
+				background: Chartreuse;
+			}
+			
+			.two {
+				background: GreenYellow;
+			}
+			
+			.three {
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body class="body">
+		
+		<div class="one">1
+			<div class="two">2
+				<div class="three">
+					3
+				</div>
+			</div>
+		</div>
+		
+		<button>点击</button>
+		
+		<script>
+			
+			const divs = document.querySelectorAll('div');
+			const button = document.querySelector('button');
+			
+			function logText(e) {
+				console.log(this.classList.value);
+				// e.stopPropagation(); // 停止冒泡
+			}
+			
+			divs.forEach(div => div.addEventListener('click', logText, {
+				capture: false,
+				once: true
+			}));
+			
+			button.addEventListener('click', () => {
+				console.log('Click!!!');
+			}, {
+				once: true
+			});
+		</script>
+		
+	</body>
+</html>
